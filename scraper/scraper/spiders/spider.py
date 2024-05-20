@@ -20,6 +20,7 @@ class RecipeSpider(scrapy.Spider):
             yield scrapy.Request(url, callback=self.parse)
 
     def parse(self, response: Response, **kwargs: Any) -> Any:
+        '''parser for main page to get links and text'''
         output_dir = 'output'
         page = response.url.split("/")[-2]
         #in XPath dot. refers to the current context node so relative path
@@ -39,11 +40,15 @@ class RecipeSpider(scrapy.Spider):
              
                 print("------------")
                 print(text, link) #-> [' Whole30\n'] https://www.allrecipes.com/recipes/22590/healthy-recipes/whole30/
+                filename= f"output/{text.strip()}.txt"
+                if link:
+                    yield scrapy.Request(url=link, callback=self.parse_recipe_page, meta={'filename': filename})
+                # with open(filename, "a+", encoding='utf-8') as f:
+                #     pass
+    
+    def parse_recipe_page(self, response: Response, **kwargs: Any) -> Any:
 
-                with open(f"output/{text.strip()}.txt", "a+", encoding='utf-8') as f:
-                    pass
-
-
+        file_path = response.meta['filename']
         
 
 
