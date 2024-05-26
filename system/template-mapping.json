@@ -1,0 +1,62 @@
+{
+    "mappings":{
+        "properties":{
+            "name":{
+                "type": "text"
+            },
+            "cookinfo": {
+                "type": "nested",
+                "properties":{
+                    "preptime":{
+                        "type": "float"
+                    },
+                    "cooktime":{
+                        "type": "float"
+                    },
+                    "totaltime": {
+                        "type": "float"
+                    },
+                    "servings": {
+                        "type": "float"
+                    }
+                }
+
+            },
+            "nutrition":{
+                "type":"nested",
+                "properties":{
+                    "calories":{
+                        "type":"float"
+                    },
+                    "fat":{
+                        "type":"float"
+                    },
+                    "carbs":{
+                        "type":"float"
+                    },
+                    "protein":{
+                        "type":"float"
+                    }
+
+                }
+            },
+            "directions": {
+                "type":"text"
+            },
+            "ingredients": {
+                "type": "nested",
+                "properties": {
+                  "quantity": {
+                    "type": "text"
+                  },
+                  "unit": {
+                    "type": "text"
+                  },
+                  "name": {
+                    "type": "text"
+                  }
+                }
+              }
+        }
+    }
+}
